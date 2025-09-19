@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="get your github link from just your username"
+    />
+    <title>Itinerary Cost Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="container">
+      <hgroup>
+        <h1>Itinerary Cost Estimator</h1>
+        <p>Calculate sum of all travel related costs</p>
+      </hgroup>
+    </header>
+    <main class="container">
+      <input
+        type="number"
+        id="transport"
+        placeholder="Enter Transport cost : "
+      />
+
+      <input type="number" id="activity" placeholder="Enter activity cost : " />
+      <input type="number" id="food" placeholder="Enter food cost : " />
+      <p>Hotel cost :</p>
+
+      <select id="hotel">
+        <option value="Budget">Budget</option>
+        <option value="Standard">Standard</option>
+        <option value="Luxury">Luxury</option>
+      </select>
+
+      <input type="submit" value="calculate Total" id="calculateBtn" />
+      <div id="app"></div>
+    </main>
+    <footer class="container neog-footer">
+      <small>
+        go from zero to hero at full stack development with
+        <a href="https://neog.camp">neog.camp</a>
+      </small>
+    </footer>
+    <script>
+      // logic goes here
+
+      function calculateItineraryCost(transport, hotelCost, food, activity) {
+        const totalCost = transport + hotelCost + food + activity;
+        return totalCost;
+      }
+
+      // grab the element
+
+      function handleItineraryCost() {
+        const transportInput = document.getElementById("transport");
+        const hotelInput = document.getElementById("hotel");
+        const foodInput = document.getElementById("food");
+        const activityInput = document.getElementById("activity");
+        const app = document.getElementById("app");
+
+        // read the value
+
+        const transport = parseFloat(transportInput.value);
+        const hotel = hotelInput.value;
+        const food = parseFloat(foodInput.value);
+        const activity = parseFloat(activityInput.value);
+
+        // condition for hotel type
+
+        let hotelCost;
+        if (hotel === "Budget") {
+          return (hotelCost = 1000);
+        } else if (hotel === "Standard") {
+          return (hotelCost = 2500);
+        } else {
+          return (hotelCost = 3000);
+        }
+        console.log(hotelCost);
+
+        // calling fuction
+
+        const result = calculateItineraryCost(
+          transport,
+          hotelCost,
+          food,
+          activity
+        );
+        app.innerText =
+          "Total cost :" + result + " RS" + " hotel Cost" + hotelCost + "RS";
+      }
+      // adding button element
+      const calculateBtn = document.getElementById("calculateBtn");
+
+      // adding event listener to calculateBtn
+      calculateBtn.addEventListener("click", handleItineraryCost);
+    </script>
+  </body>
+</html>

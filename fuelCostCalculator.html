@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="get your github link from just your username"
+    />
+    <title>Average Speed Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="container">
+      <hgroup>
+        <h1>Fuel Cost Calculator</h1>
+        <p>Calculate Fuel cost by multiplying fuel with price</p>
+      </hgroup>
+    </header>
+    <main class="container">
+      <input type="number" id="distance" placeholder="Enter distance in Km" />
+
+      <input
+        type="number"
+        id="fuelEfficiency"
+        placeholder="Enter fuel in km/l"
+      />
+      <input type="number" id="price" placeholder="Enter the price " />
+      <input type="submit" value="Fuel Cost Calculator" id="CalculateBtn" />
+
+      <div id="fuelCostResult"></div>
+    </main>
+    <footer class="container neog-footer">
+      <small>
+        go from zero to hero at full stack development with
+        <a href="https://neog.camp">neog.camp</a>
+      </small>
+    </footer>
+    <script>
+      // logic goes here
+      function calculateFuelCost(fuelEfficiency, price, distance) {
+        let fuelNeeded = distance / fuelEfficiency;
+        let totalCost = fuelNeeded * price;
+        return totalCost.toFixed(2);
+      }
+
+      // grab the input
+      function handleFuelCost() {
+        const distanceInputElement = document.getElementById("distance");
+        const fuelEfficiencyInput = document.getElementById("fuelEfficiency");
+        const priceInputElement = document.getElementById("price");
+        const fuelCostResultElement = document.getElementById("fuelCostResult");
+
+        // read the value
+
+        const distance = parseFloat(distanceInputElement.value);
+        const fuelEfficiency = parseFloat(fuelEfficiencyInput.value);
+        const price = parseFloat(priceInputElement.value);
+
+        // adding a condititon if fuelEfficiency is below the threshold
+        if (fuelEfficiency < 10) {
+          return "fuel must more than 10km/l";
+        }
+
+        // calling the function
+        const result = calculateFuelCost(fuelEfficiency, price, distance);
+        fuelCostResultElement.innerText = "fuel cost is " + result + "RS";
+      }
+
+      const calculateBtn = document.getElementById("CalculateBtn");
+
+      // adding event-listener to button
+      calculateBtn.addEventListener("click", handleFuelCost);
+    </script>
+  </body>
+</html>

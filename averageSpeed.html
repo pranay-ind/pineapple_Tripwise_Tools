@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="get your github link from just your username"
+    />
+    <title>Average Speed Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="container">
+      <hgroup>
+        <h1>Average Speed Calculator</h1>
+        <p>Calculate speed by dividing total distance by travel time</p>
+      </hgroup>
+    </header>
+    <main class="container">
+      <input type="number" id="distance" placeholder="Enter distance in Km" />
+
+      <input type="number" id="time" placeholder="Enter time in hours" />
+      <input type="submit" value="speedCalculator" id="CalculateBtn" />
+
+      <div id="speedResult"></div>
+    </main>
+    <footer class="container neog-footer">
+      <small>
+        go from zero to hero at full stack development with
+        <a href="https://neog.camp">neog.camp</a>
+      </small>
+    </footer>
+    <script>
+      // logic goes here
+
+      function calculateSpeed(distance, time) {
+        const speed = distance / time;
+        return speed;
+      }
+
+      function handleAverageSpeed() {
+        // grab the input
+        const inputDistance = document.getElementById("distance");
+        const inputTime = document.getElementById("time");
+        const speedResultElement = document.getElementById("speedResult");
+
+        // read the value
+
+        const distance = parseFloat(inputDistance.value);
+        const time = parseFloat(inputTime.value);
+
+        const result = calculateSpeed(distance, time);
+        speedResultElement.innerText = "Speed :" + result + " km/h";
+      }
+
+      // calling the button
+      const calculateBtn = document.getElementById("CalculateBtn");
+
+      // adding event-listener to button
+      calculateBtn.addEventListener("click", handleAverageSpeed);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="get your github link from just your username"
+    />
+    <title>Average Speed Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="container">
+      <hgroup>
+        <h1>ETA Speed Calculator</h1>
+        <p>Calculate ETA by dividing distance by speed</p>
+      </hgroup>
+    </header>
+    <main class="container">
+      <input type="number" id="distance" placeholder="Enter distance in Km" />
+
+      <input type="number" id="speed" placeholder="Enter speed in km/h" />
+      <input type="submit" value="etaCalculator" id="calculateBtn" />
+
+      <div id="etaResult"></div>
+    </main>
+    <footer class="container neog-footer">
+      <small>
+        go from zero to hero at full stack development with
+        <a href="https://neog.camp">neog.camp</a>
+      </small>
+    </footer>
+    <script>
+      // logic goes here
+
+      function calculateEta(distance, speed) {
+        const time = distance / speed;
+        return time;
+      }
+
+      function handleTimeOfArrival() {
+        // grab the input
+        const inputDistance = document.getElementById("distance");
+        const inputSpeed = document.getElementById("speed");
+        const etaResultElement = document.getElementById("etaResult");
+
+        // read the value
+
+        const distance = parseFloat(inputDistance.value);
+        const speed = parseFloat(inputSpeed.value);
+
+        const result = calculateEta(distance, speed);
+        etaResultElement.innerText = "Time :" + result + "hours";
+      }
+
+      // calling the button
+      const calculateBtn = document.getElementById("calculateBtn");
+
+      // adding event-listener to button
+      calculateBtn.addEventListener("click", handleTimeOfArrival);
+    </script>
+  </body>
+</html>
